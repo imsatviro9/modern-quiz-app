@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Quiz App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Role Selection Screen -->
+        <div id="role-screen" class="screen active">
+            <h1>Quiz Platform</h1>
+            <p>Welcome! Are you a Recruiter or a Student?</p>
+            <div class="role-buttons">
+                <button id="role-recruiter-btn" class="primary-btn">I'm a Recruiter</button>
+                <button id="role-student-btn" class="secondary-btn">I'm a Student</button>
+            </div>
+        </div>
+
+        <!-- Recruiter Dashboard Screen -->
+        <div id="recruiter-screen" class="screen">
+            <h2>Recruiter Dashboard</h2>
+            
+            <div id="create-quiz-section">
+                <p>Create a new quiz to generate a unique access code for your students.</p>
+                <button id="create-quiz-btn" class="primary-btn">Generate New Quiz Code</button>
+            </div>
+
+            <div id="add-question-section" class="hidden">
+                <div class="code-display">
+                    Quiz Code: <span id="display-quiz-code" class="highlight-code"></span>
+                </div>
+                <p class="small-text">Share this code with your students!</p>
+                
+                <div class="dashboard-grid">
+                    <!-- Manual Entry -->
+                    <div class="form-container form-card">
+                        <h3>Add Manually</h3>
+                        <input type="text" id="q-text" placeholder="Question Text" class="modern-input">
+                        <input type="text" id="q-opt1" placeholder="Option 1" class="modern-input">
+                        <input type="text" id="q-opt2" placeholder="Option 2" class="modern-input">
+                        <input type="text" id="q-opt3" placeholder="Option 3" class="modern-input">
+                        
+                        <select id="q-answer" class="modern-input select-input">
+                            <option value="" disabled selected>Select Correct Option...</option>
+                            <option value="0">Option 1</option>
+                            <option value="1">Option 2</option>
+                            <option value="2">Option 3</option>
+                        </select>
+
+                        <button id="add-question-btn" class="primary-btn block-btn">Add 1 Question</button>
+                    </div>
+
+                    <!-- Auto Generate Entry -->
+                    <div class="form-container form-card">
+                        <h3>Auto Generate</h3>
+                        <p class="small-text">Fetch questions instantly via API</p>
+                        <select id="api-topic" class="modern-input select-input">
+                            <option value="" disabled selected>Select Topic...</option>
+                            <option value="9">General Knowledge</option>
+                            <option value="18">Science: Computers</option>
+                            <option value="19">Science: Mathematics</option>
+                            <option value="21">Sports</option>
+                            <option value="22">Geography</option>
+                            <option value="23">History</option>
+                            <option value="11">Entertainment: Film</option>
+                        </select>
+
+                        <select id="api-difficulty" class="modern-input select-input">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+
+                        <input type="number" id="api-amount" placeholder="Number of Questions (e.g. 5)" class="modern-input" min="1" max="50" value="5">
+                        
+                        <button id="auto-generate-btn" class="secondary-btn block-btn">Generate & Add</button>
+                    </div>
+                </div>
+
+                <p id="recruiter-message" class="success-message hidden"></p>
+                <p id="recruiter-error" class="error-message hidden"></p>
+            </div>
+            
+            <button class="text-btn back-to-home">Back to Home</button>
+        </div>
+
+        <!-- Student Dashboard Screen -->
+        <div id="student-screen" class="screen">
+            <h2>Student Access</h2>
+            <p>Enter the Quiz Code provided by your recruiter to start the test.</p>
+            <div class="form-container">
+                <input type="text" id="student-code-input" placeholder="e.g. A7X9K" class="modern-input text-center uppercase">
+                <button id="start-student-quiz-btn" class="primary-btn block-btn">Start Quiz</button>
+                <p id="student-error-message" class="error-message hidden"></p>
+            </div>
+            <button class="text-btn back-to-home">Back to Home</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <h2 id="question-text">Question text goes here</h2>
+            <div id="options-container" class="options-grid">
+                <!-- Options will be injected here -->
+            </div>
+            <button id="next-btn" class="primary-btn hidden">Next Question</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h2>Quiz Complete!</h2>
+            <div class="score-container">
+                <span id="score-text">0</span>
+                <span class="score-total" id="score-total-display">/ 0</span>
+            </div>
+            <p id="score-message">Great job!</p>
+            <button class="primary-btn back-to-home">Finish & Go Home</button>
+        </div>
+    </div>
+    
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
